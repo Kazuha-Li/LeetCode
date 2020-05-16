@@ -8,6 +8,8 @@ https://leetcode.com/problems/non-decreasing-array/
 using namespace std;
 
 bool checkPossibility(vector<int>& nums) {
+    // Time = O(N)
+    // Space = O(1)
     bool modify = false;
     for (int i = 0; i < nums.size() - 1; i++) {
         // cout << "i = " << i << endl;
