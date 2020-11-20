@@ -4,4 +4,4 @@
 # 	gcc -o 
 
 clean:
-	rm -f *.o *.exe
+	rm -f *.o *.exe *.out

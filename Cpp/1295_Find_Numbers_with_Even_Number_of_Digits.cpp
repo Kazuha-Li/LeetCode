@@ -19,6 +19,8 @@ Input: nums = [555,901,482,1771]
 Output: 1 
 Explanation: 
 Only 1771 contains an even number of digits.
+
+ref：https://leetcode.com/problems/find-numbers-with-even-number-of-digits/discuss/521567/C%2B%2B-solution-with-log-and-bit-manipulation
 */
 
 #include <algorithm>
