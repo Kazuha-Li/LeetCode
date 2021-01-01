@@ -36,13 +36,18 @@ https://www.cnblogs.com/grandyang/p/4125588.html
 using namespace std;
 
 int reverse(int x) {
+    // 也可以使用 long，最後再判斷是否 overflow
+    // long ans = 0;
     int ans = 0;
     while (x != 0) {
-        // 檢查 overflow，不須檢查 == INT32_MAX/10 的情況，詳見ref
+        // int range = -2147483648 ~ 2147483647
+        // 檢查 overflow，不須檢查 == INT32_MAX/10(=214748364) 的情況，詳見ref
+        // 當 == 214,748,364 時，最後一位只有可能是 1 所以不會overflow
         if (abs(ans) > INT32_MAX / 10) return 0;
         ans = ans * 10 + x % 10;
         x /= 10;
     }
+    // return (ans > INT32_MAX || ans < INT32_MIN) ? 0 : ans;
     return ans;
 }
 
