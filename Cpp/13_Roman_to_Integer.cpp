@@ -66,6 +66,7 @@ using namespace std;
 
 class Solution {
    public:
+    /*
     // 也可以用 switch 來寫
     int romanToInt(string s) {
         int n = s.size(), sum = 0;
@@ -94,6 +95,29 @@ class Solution {
             // if(s[i] == 'C')sum += 100;
             if (s[i] == 'D') sum += 500;
             if (s[i] == 'M') sum += 1000;
+        }
+        return sum;
+    }
+    */
+    // Approach 2
+    // using a dictionary
+    // 如果 char 是最後一個或者 char代表的數值 >= 後一個char代表的數值，則用加法
+    int romanToInt(string s) {
+        unordered_map<char, int> dict = {
+            {'I', 1},
+            {'V', 5},
+            {'X', 10},
+            {'L', 50},
+            {'C', 100},
+            {'D', 500},
+            {'M', 1000}};
+        int sum = 0;
+        for (int i = 0; i < s.size(); i++) {
+            int val = dict[s[i]];
+            if (i == s.size() - 1 || dict[s[i]] >= dict[s[i + 1]])
+                sum += val;
+            else
+                sum -= val;
         }
         return sum;
     }
