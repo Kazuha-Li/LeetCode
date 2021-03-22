@@ -1,5 +1,6 @@
 /*
 https://leetcode.com/problems/reverse-linked-list/
+
 Reverse a singly linked list.
 
 Example:
@@ -9,8 +10,11 @@ Output: 5->4->3->2->1->NULL
 Follow up:
 
 A linked list can be reversed either iteratively or recursively. Could you implement both?
-ref: https://www.cnblogs.com/grandyang/p/4478820.html
+
+ref:
+https://www.cnblogs.com/grandyang/p/4478820.html
 http://glj8989332.blogspot.com/2019/08/leetcode-206-reverse-linked-list.html
+
 */
 #include <algorithm>
 #include <iostream>
@@ -26,11 +30,12 @@ struct ListNode {
     ListNode(int x, ListNode* next) : val(x), next(next) {}
 };
 
-class Solution {
+class Solution_recursive {
    public:
-    // recursively
+    // Approach 1: recursively
     // Time = O(n)
-    /*
+    // Space = O(n)
+
     ListNode* reverseList(ListNode* head) {
         if (head == NULL || head->next == NULL) return head;
 
@@ -39,9 +44,12 @@ class Solution {
         head->next = NULL;
         return newHead;
     }
-    */
+};
+class Solution_iterative {
+   public:
     // iteratively
     // Time = O(n)
+    // Space = O(1)
     ListNode* reverseList(ListNode* head) {
         ListNode *newHead = NULL, *t;
         while (head) {
