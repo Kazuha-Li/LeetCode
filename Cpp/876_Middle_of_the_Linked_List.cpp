@@ -28,8 +28,9 @@ https://leetcode.com/problems/middle-of-the-linked-list/solution/
 
 */
 
-#include <iostream>
+#include <bits/stdc++.h>
 
+#include <iostream>
 using namespace std;
 
 // Definition for singly-linked list.
@@ -41,7 +42,41 @@ struct ListNode {
     ListNode(int x, ListNode* next) : val(x), next(next) {}
 };
 
-class Solution {
+class Solution_count_length {
+   public:
+    // Approach 1: 計算長度
+    // Time = O(n)
+    // Space = O(1)
+    ListNode* middleNode(ListNode* head) {
+        int length = 0;
+        ListNode* t = head;
+        while (t) {
+            length++;
+            t = t->next;
+        }
+        t = head;
+        length /= 2;
+        while (length > 0) {
+            length--;
+            t = t->next;
+        }
+        return t;
+    }
+};
+class Solution_array {
+   public:
+    // Approach 2: use array
+    // Time = O(n)
+    // Space = O(n)
+    ListNode* middleNode(ListNode* head) {
+        vector<ListNode*> res{head};
+        while (res.back()->next) {
+            res.push_back(res.back()->next);
+        }
+        return res[res.size() / 2];
+    }
+};
+class Solution_one_pass {
    public:
     // 利用fast、slow兩個指針
     // fast 每次比 slow 多走一格
@@ -49,7 +84,9 @@ class Solution {
     // Space = O(1)
     ListNode* middleNode(ListNode* head) {
         ListNode *fast = head, *slow = head;
-        while (fast == NULL || fast->next == NULL) {
+        // 當List長度為偶數如果要第一個mid則條件為
+        // while(fast->next && fast->next->next)
+        while (fast && fast->next) {
             fast = fast->next->next;
             slow = slow->next;
         }
