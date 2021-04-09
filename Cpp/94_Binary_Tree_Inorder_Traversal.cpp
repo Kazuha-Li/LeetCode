@@ -91,8 +91,9 @@ class Solution {
         }
         return ans;
     }
-
-    /*
+};
+class Solution_Iterative {
+   public:
     // Iterative use stack
     // Time = O(n)
     // Space = O(n)
@@ -125,10 +126,14 @@ class Solution {
         }
         return ans;
     }
-    */
-
-    /*
+};
+class Solution_recursive {
+   public:
     // Recursive
+    // Time complexity : O(n). The time complexity is O(n) because the recursive function is
+    // T(n) = 2 T(n/2)+1.
+    // Space complexity : The worst case space required is O(n), and in the average case it's O(logn)
+    // where n is number of nodes.
     vector<int> inorderTraversal(TreeNode* root) {
         vector<int> ans;
         LDRtraversal(root, ans);
@@ -140,7 +145,6 @@ class Solution {
         ans.push_back(root->val);        // D
         LDRtraversal(root->right, ans);  // R
     }
-    */
 };
 
 int main(int argc, char const* argv[]) {
