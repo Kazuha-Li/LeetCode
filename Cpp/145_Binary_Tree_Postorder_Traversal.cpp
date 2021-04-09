@@ -61,7 +61,7 @@ struct TreeNode {
     TreeNode(int x, TreeNode* left, TreeNode* right) : val(x), left(left), right(right) {}
 };
 
-class Solution {
+class Solution_Iterative {
    public:
     // LRD
     // Iterative
@@ -73,23 +73,24 @@ class Solution {
         while (!st.empty() || p) {
             if (p) {
                 st.push(p);
-                // ans.push_back(p->val);
-                ans.insert(ans.begin(), p->val);
+                ans.push_back(p->val);
+                // ans.insert(ans.begin(), p->val);
                 p = p->right;  // DRL
             } else {
                 p = st.top()->left;
                 st.pop();
             }
         }
-        // return vector<int>(ans.rbegin(), ans.rend());
-        return ans;
+        return vector<int>(ans.rbegin(), ans.rend());
+        // return ans;
     }
-}
+};
 
-/*
+class Solution_Recursive {
+   public:
     // Recursive
-    // Time = O(n).because the recursive function is T(n) = 2 \cdot T(n/2)+1T(n)=2⋅T(n/2)+1.
-    // Space complexity : The worst case space required is O(n), and in the average case it's O(logn) where nn is number of nodes.
+    // Time = O(n).because the recursive function is T(n)=2⋅T(n/2)+1.
+    // Space complexity : The worst case space required is O(n), and in the average case it's O(logn) where n is number of nodes.
     vector<int> postorderTraversal(TreeNode* root) {
         vector<int> ans;
         LRD_traversal(root, ans);
@@ -97,13 +98,11 @@ class Solution {
     }
     void LRD_traversal(TreeNode* root, vector<int>& ans) {
         if (!root) return;
-        LRD_traversal(root->left, ans); // L
-        LRD_traversal(root->right, ans);// R
-        ans.push_back(root->val);       // D
+        LRD_traversal(root->left, ans);   // L
+        LRD_traversal(root->right, ans);  // R
+        ans.push_back(root->val);         // D
     }
-    */
-}
-;
+};
 
 int main(int argc, char const* argv[]) {
     return 0;
