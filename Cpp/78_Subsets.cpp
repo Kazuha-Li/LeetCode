@@ -29,7 +29,6 @@ https://www.cnblogs.com/grandyang/p/4309345.html
 #include <set>
 #include <vector>
 using namespace std;
-// 還有其他解法
 // Time = O(2^n) n = nums.size()
 vector<vector<int>> subsets(vector<int>& nums) {
     vector<vector<int>> ans(1);
@@ -44,6 +43,27 @@ vector<vector<int>> subsets(vector<int>& nums) {
     }
     return ans;
 }
+
+class Solution_recursive {
+    vector<vector<int>> res;
+    vector<int> out;
+
+   public:
+    vector<vector<int>> subsets(vector<int>& nums) {
+        res.clear();
+        out.clear();
+        dfs(nums, 0);
+        return res;
+    }
+    void dfs(vector<int>& nums, int cur) {
+        res.push_back(out);
+        for (int i = cur; i < (int)nums.size(); i++) {
+            out.push_back(nums.at(i));
+            dfs(nums, i + 1);
+            out.pop_back();
+        }
+    }
+};
 
 int main(int argc, char const* argv[]) {
     vector<int> nums;
