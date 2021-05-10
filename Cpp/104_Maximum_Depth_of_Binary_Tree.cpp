@@ -1,5 +1,6 @@
 /*
 https://leetcode.com/problems/maximum-depth-of-binary-tree/
+
 Given the root of a binary tree, return its maximum depth.
 
 A binary tree's maximum depth is the number of nodes along the longest path from the root node down to the farthest leaf node.
@@ -16,7 +17,9 @@ Example 4:
 Input: root = [0]
 Output: 1
 
-ref:https://www.cnblogs.com/grandyang/p/4051348.html
+ref:
+https://www.cnblogs.com/grandyang/p/4051348.html
+
 */
 #include <algorithm>
 #include <iostream>
@@ -36,6 +39,7 @@ struct TreeNode {
 
 // 利用遞迴解
 // Time = O(n)
+// Space = O(n)
 class Solution {
    public:
     int maxDepth(TreeNode *root) {
@@ -45,13 +49,14 @@ class Solution {
 };
 // BFS
 // Time = O(n)
+// Space = O(n)
 int maxDepth(TreeNode *root) {
     if (root == NULL) return 0;
     queue<TreeNode *> q;
     q.push(root);
-    int ans = 0;
+    int level = 0;
     while (!q.empty()) {
-        ans++;
+        level++;
         // 這邊要注意因為q.size()是變動的不能直接寫在終止條件裡面
         int n = q.size();
         for (int i = 0; i < n; i++) {
@@ -63,13 +68,12 @@ int maxDepth(TreeNode *root) {
             if (tmp->right) q.push(tmp->right);
         }
     }
-    return ans;
+    return level;
 }
 
 int main(int argc, char const *argv[]) {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
-    int ans;
 
     return 0;
 }
