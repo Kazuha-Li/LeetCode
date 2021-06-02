@@ -34,12 +34,42 @@ grid[i][j] is '0' or '1'.
 
 ref:
 https://www.cnblogs.com/grandyang/p/4402656.html
+
 */
 #include <iostream>
 #include <vector>
 
 using namespace std;
 
+// Time = O(4mn) = O(mn) -> m = grid.size(), n = grid[0].size()
+// Space = O(mn)
+class Solution_ {
+   public:
+    int numIslands(vector<vector<char>>& grid) {
+        int m = grid.size(), n = grid[0].size();
+        vector<vector<bool>> visited(m, vector<bool>(n, false));
+        int res = 0;
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                if (grid[i][j] == '1' && !visited[i][j]) {
+                    dfs(grid, i, j, visited);
+                    res++;
+                }
+            }
+        }
+        return res;
+    }
+
+    void dfs(vector<vector<char>>& grid, int i, int j, vector<vector<bool>>& visited) {
+        int m = grid.size(), n = grid[0].size();
+        if (i < 0 || i >= m || j < 0 || j >= n || grid[i][j] == '0' || visited[i][j]) return;
+        visited[i][j] = true;
+        dfs(grid, i + 1, j, visited);
+        dfs(grid, i - 1, j, visited);
+        dfs(grid, i, j + 1, visited);
+        dfs(grid, i, j - 1, visited);
+    }
+};
 class Solution {
    public:
     // 利用DFS遞迴去查看，如果等於1就把目前位置改成0，然後往四個方向去找
