@@ -1,5 +1,6 @@
 /*
 https://leetcode.com/problems/binary-tree-pruning/
+
 We are given the head node root of a binary tree, where additionally every node's value is either a 0 or a 1.
 
 Return the same tree where every subtree (of the given tree) not containing a 1 has been removed.
@@ -52,6 +53,8 @@ struct TreeNode {
     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
 };
 
+// Time = O(n), n = number of nodes in the tree
+// Space = O(n), worst case -> skrewed tree
 class Solution {
    public:
     // 遞迴修剪所有 val = 0 的 leaf node
